@@ -2,13 +2,13 @@ package;
 
 class Test {
   public static function main() {
-    var a = {
+    var app = {
       width : 1024,
       height : 800,
       title : 'GS Window from Haxe'
     };
 
-    hlgs.Gs.create(a);
+    hlgs.Gs.create(app);
     while (hlgs.Gs.appIsRunning()) {
       hlgs.Gs.frame();
     }

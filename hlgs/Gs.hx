@@ -10,7 +10,7 @@ typedef App = {
 
 @:hlNative('hlgs')
 class Gs {
-  public static function create(app: Dynamic) {}
+  public static function create(app: ExtDynamic<App>) {}
   public static function appIsRunning() : Bool { return false; }
   public static function frame() {}
 }
