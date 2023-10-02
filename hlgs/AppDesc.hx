@@ -1,8 +1,8 @@
 package hlgs;
 
 /**
-  This class essentially just describes the application. (Similar to gs_app_desc_t.)
-**/
+ * This class essentially just describes the application. (Similar to gs_app_desc_t.)
+ */
 class AppDesc {
   public var width: Int = 0;
   public var height: Int = 0;

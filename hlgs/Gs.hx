@@ -5,8 +5,8 @@ abstract ExtDynamic<T>(Dynamic) from T to T {}
 @:hlNative('hlgs')
 class Gs {
   /**
-    Only exists for internal use. DO NOT CALL IF YOU DONT KNOW WHAT YOURE DOING.
-  **/
+   *Only exists for internal use. DO NOT CALL IF YOU DONT KNOW WHAT YOURE DOING.
+   */
   public static function createEx(app: Dynamic, title: hl.Bytes, titleLen: Int): Void {}
   public static function appIsRunning() : Bool { return false; }
   public static function frame(): Void {}

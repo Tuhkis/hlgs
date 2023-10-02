@@ -13,14 +13,13 @@ HL_PRIM void HL_NAME(create_ex) (vdynamic* app, vbyte* title, int title_len) {
   a.window.height = hl_dyn_geti(app, hl_hash_utf8("height"), &hlt_i32);
 
   char title_buf[title_len + 1];
-  /* printf("Lenght of title: %d\n", title_len); */
   for (int i = 0; i < title_len; ++i)
     title_buf[i] = *(title + i * 2);
   title_buf[title_len] = 0;
 
   a.window.title = title_buf;
 
-  a.window.vsync = false;
+  a.window.vsync = hl_dyn_geti(app, hl_hash_utf8("vsync"), &hlt_i32);
   a.window.frame_rate = hl_dyn_geti(app, hl_hash_utf8("fps"), &hlt_i32);
   a.init = _hlgs_init;
   a.update = _hlgs_frame;
