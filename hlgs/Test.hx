@@ -11,12 +11,13 @@ class Test {
 
     while (Gs.appIsRunning()) {
       cb.renderpassBegin();
-        cb.clear(1.0, 0.0, 0.0);
+        cb.clear(1.0, 0.2, 0.2);
       cb.renderpassEnd();
       cb.submit();
       Gs.frame();
     }
     cb.dispose();
+    cb = null;
     trace('All works!');
   }
 }

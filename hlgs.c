@@ -4,9 +4,12 @@
 #include "gunslinger/gs.h"
 
 #define TGSCB _ABSTRACT(hlgs_cb)
+#define TGSPIP _ABSTRACT(hlgs_pipeline)
+#define TGSSHADER _ABSTRACT(hlgs_shader)
+#define TGSVBO _ABSTRACT(hlgs_vbo)
 
-static void _hlgs_init() {}
-static void _hlgs_frame() {}
+static void _hlgs_init()    {}
+static void _hlgs_frame()   {}
 static void _hlgs_cleanup() {}
 
 HL_PRIM void HL_NAME(create_ex) (vdynamic* app, vbyte* title, int title_len) {
@@ -40,7 +43,7 @@ HL_PRIM gs_command_buffer_t* HL_NAME(new_command_buffer_ex) () {
 }
 
 HL_PRIM void HL_NAME(dispose_command_buffer_ex) (gs_command_buffer_t* cb) {
-  free(cb);
+  gs_command_buffer_free(cb);
 }
 
 HL_PRIM void HL_NAME(submit_command_buffer_ex) (gs_command_buffer_t* cb) {
