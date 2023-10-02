@@ -1,3 +1,3 @@
 -cp hlgs
--main Test
+-main hlgs.Test
 -hl test.hl

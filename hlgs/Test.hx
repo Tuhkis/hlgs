@@ -1,17 +1,14 @@
-package;
+package hlgs;
 
 class Test {
   public static function main() {
-    var app = {
-      width : 1024,
-      height : 800,
-      title : 'GS Window from Haxe'
-    };
+    var app: AppDesc = new AppDesc();
 
-    hlgs.Gs.create(app);
-    while (hlgs.Gs.appIsRunning()) {
-      hlgs.Gs.frame();
+    Gs.create(app);
+    while (Gs.appIsRunning()) {
+      Gs.frame();
     }
-    trace('success!!');
+    trace('All works!');
   }
 }
+
