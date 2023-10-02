@@ -11,7 +11,7 @@ class Gs {
   public static function appIsRunning() : Bool { return false; }
   public static function frame(): Void {}
   
-  public static function create(desc: AppDesc): Void {
+  public static inline function create(desc: AppDesc): Void {
     var tempApp = {
       width: desc.width,
       height: desc.height,
