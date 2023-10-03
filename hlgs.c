@@ -3,10 +3,6 @@
 
 #include "gunslinger/gs.h"
 
-#define TGSCB _ABSTRACT(hlgs_cb)
-#define TGSPIP _ABSTRACT(hlgs_pipeline)
-#define TGSSHADER _ABSTRACT(hlgs_shader)
-#define TGSVBO _ABSTRACT(hlgs_vbo)
 
 static void _hlgs_init()    {}
 static void _hlgs_frame()   {}
@@ -36,6 +32,9 @@ HL_PRIM bool HL_NAME(app_is_running) () { return gs_app()->is_running; }
 
 HL_PRIM void HL_NAME(frame) () { gs_frame(); }
 
+/* =============== CommandBuffer =============== */
+#define TGSCB _ABSTRACT(hlgs_cb)
+
 HL_PRIM gs_command_buffer_t* HL_NAME(new_command_buffer_ex) () {
   gs_command_buffer_t* ret = malloc(sizeof(gs_command_buffer_t));
   *ret = gs_command_buffer_new();
@@ -64,13 +63,62 @@ HL_PRIM void HL_NAME(clear_command_buffer_ex) (gs_command_buffer_t* cb, float r,
   };
   gs_graphics_clear(cb, &clear);
 }
+/* =============== CArrayFloat =============== */
+typedef struct cArrayFloat {
+  float* data;
+  unsigned int len;
+} CArrayFloat;
+#define TCARRAYFLOAT _ABSTRACT(hlgs_carrayfloat)
 
+HL_PRIM CArrayFloat* HL_NAME(new_carrayfloat_ex) (int len) {
+  float* data = malloc(sizeof(float) * len);
+  CArrayFloat* ret = malloc(sizeof(CArrayFloat));
+  ret->data = data;
+  return ret;
+}
+
+HL_PRIM void HL_NAME(dispose_carrayfloat_ex) (CArrayFloat* arr) {
+  free(arr->data);
+  free(arr);
+  arr-> data = NULL;
+  arr = NULL;
+}
+
+HL_PRIM void HL_NAME(carrayfloat_set_nth_ex) (CArrayFloat* arr, unsigned int n, float value) {
+  if (n < arr->len && arr != NULL)
+    arr->data[n] = value;
+}
+
+/* =============== VertexBuffer =============== */
+#define TGSVBO _ABSTRACT(hlgs_vbo)
+HL_PRIM gs_handle(gs_graphics_vertex_buffer_t)* HL_NAME(new_vbo_ex) (vbyte* data, int len_of_data) {
+  float v_data[len_of_data];
+  for (char i = 0; i < len_of_data; ++i) {
+    printf_s("%d of data: %f\n", i, *data);
+  }
+  return NULL;
+}
+
+/* =============== Pipeline =============== */
+#define TGSPIP _ABSTRACT(hlgs_pipeline)
+
+/* =============== Shader =============== */
+#define TGSSHADER _ABSTRACT(hlgs_shader)
+
+/* CArrayFloat */
+DEFINE_PRIM(TCARRAYFLOAT, new_carrayfloat_ex, _I32);
+DEFINE_PRIM(_VOID, dispose_carrayfloat_ex, TCARRAYFLOAT);
+DEFINE_PRIM(_VOID, carrayfloat_set_nth_ex, TCARRAYFLOAT _I32 _F32);
+/* CommandBuffer */
 DEFINE_PRIM(_VOID, clear_command_buffer_ex, TGSCB _F32 _F32 _F32);
 DEFINE_PRIM(_VOID, end_renderpass_command_buffer_ex, TGSCB);
 DEFINE_PRIM(_VOID, begin_renderpass_command_buffer_ex, TGSCB);
 DEFINE_PRIM(_VOID, dispose_command_buffer_ex, TGSCB);
 DEFINE_PRIM(_VOID, submit_command_buffer_ex, TGSCB);
 DEFINE_PRIM(TGSCB, new_command_buffer_ex, _NO_ARG);
+/* VertexBuffer */
+DEFINE_PRIM(TGSVBO, new_vbo_ex, _BYTES _I32);
+/* Misc */
 DEFINE_PRIM(_VOID, create_ex, _DYN _BYTES _I32);
 DEFINE_PRIM(_BOOL, app_is_running, _NO_ARG);
 DEFINE_PRIM(_VOID, frame, _NO_ARG);
