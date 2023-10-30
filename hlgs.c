@@ -111,7 +111,7 @@ HL_PRIM gs_handle(gs_graphics_vertex_buffer_t)* HL_NAME(new_vbo_ex) (CArrayFloat
     .data = d->data,
     .size = sizeof(float) * (d->len),
   });
-  return NULL;
+  return ret;
 }
 
 HL_PRIM void HL_NAME(dispose_vbo_ex) (gs_handle(gs_graphics_vertex_buffer_t)* vbo) {
@@ -200,4 +200,3 @@ DEFINE_PRIM(_VOID, dispose_vbo_ex, TGSVBO);
 DEFINE_PRIM(_VOID, create_ex, _DYN _BYTES _I32);
 DEFINE_PRIM(_BOOL, app_is_running, _NO_ARG);
 DEFINE_PRIM(_VOID, frame, _NO_ARG);
-

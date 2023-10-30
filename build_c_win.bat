@@ -1,3 +1,4 @@
+@echo off
 if not exist impl.o call gcc -O1 -c impl.c -o impl.o -fPIC
 
 call gcc -O1 -c hlgs.c -o hlgs.o -fPIC

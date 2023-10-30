@@ -20,7 +20,7 @@ class VertexBuffer {
   public static function fromArray(arr: Array<Single>): VertexBuffer {
     var carr: CArrayFloat = CArrayFloat.fromArray(arr);
     var ret = new VertexBuffer(carr);
-    carr.dispose();
+	carr.dispose();
     return ret;
   }
 
